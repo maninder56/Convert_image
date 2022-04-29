@@ -33,12 +33,21 @@ def scale_down(photo_data):#to scale down picture quality
     new_photo_list = []
     old_data = brightness_level(photo_data)
     photo = Image.open(path + photo_path)
+    photo_size = [photo.size[0], photo.size[1]]
     for i in range(0, len(old_data), photo.size[0]):  # convert rgb list in sub list
         chunk = old_data[i: i + photo.size[0]]
         new_photo_list.append(chunk)
     photo.close()
+
+    scale_down_list =[]
+    scale_down_value = 5
+
     for i in new_photo_list:
         print(i)
+
+
+
+
 
 
 
@@ -88,15 +97,15 @@ def assing_character(brightness_data):
 
 
 
-
+'''
 def save_file(file):
     save_file = character_table(file)
     for i in save_file:
-        print(i)
+        print(i)'''
 
 
 #print(save_file(photo_path))
-print(brightness_level(photo_path))
+#print(brightness_level(photo_path))
 
 print(scale_down(photo_path))
 
