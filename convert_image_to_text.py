@@ -84,11 +84,47 @@ def character_table(assigned_char):
     photo.close()
     return character_table
 
+def save_file(file):
+    save_file = character_table(file)
+    for i in save_file:
+        print(i)
+
+
+print(save_file(photo_path))
 
 
 
 
-print(character_table(photo_path))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def read_open_text_file():
