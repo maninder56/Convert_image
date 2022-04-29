@@ -4,7 +4,7 @@ import os
 path = 'C:/Users/User/PycharmProjects/Convert_image_to_text/'
 photo_path = 'Images/flower_small.jpg'
 
-photo_size = 0
+
 # photo size = 25x25 = 625
 
 def get_photo_rgb(image_path):
@@ -20,7 +20,6 @@ def get_photo_rgb(image_path):
 
     return rgb_list
 
-
 def brightness_level(photo_data):
     brightness_list = []
     rgb_list = get_photo_rgb(photo_data)
@@ -28,6 +27,22 @@ def brightness_level(photo_data):
         average_value = (rgb[0] + rgb[1] + rgb[2]) / 3
         brightness_list.append(round(average_value))
     return brightness_list
+
+
+def scale_down(photo_data):#to scale down picture quality
+    new_photo_list = []
+    old_data = brightness_level(photo_data)
+    photo = Image.open(path + photo_path)
+    for i in range(0, len(old_data), photo.size[0]):  # convert rgb list in sub list
+        chunk = old_data[i: i + photo.size[0]]
+        new_photo_list.append(chunk)
+    photo.close()
+    for i in new_photo_list:
+        print(i)
+
+
+
+
 
 def assing_character(brightness_data):
     assined_character = []
@@ -74,26 +89,16 @@ def assing_character(brightness_data):
 
 
 
-def character_table(assigned_char):
-    photo = Image.open(path + photo_path)
-    character_table = []
-    assigned_list = assing_character(assigned_char)
-    for i in range(0, len(assigned_list), photo.size[0]):  # convert rgb list in sub list
-        chunk = assigned_list[i: i + photo.size[0]]
-        character_table.append(chunk)
-    photo.close()
-    return character_table
-
 def save_file(file):
     save_file = character_table(file)
     for i in save_file:
         print(i)
 
 
-print(save_file(photo_path))
+#print(save_file(photo_path))
+print(brightness_level(photo_path))
 
-
-
+print(scale_down(photo_path))
 
 
 
