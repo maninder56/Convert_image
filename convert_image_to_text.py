@@ -4,7 +4,7 @@ import os
 path = 'C:/Users/User/PycharmProjects/Convert_image_to_text/'
 photo_path = 'Images/flower_small.jpg'
 
-
+photo_size = 0
 # photo size = 25x25 = 625
 
 def get_photo_rgb(image_path):
@@ -14,10 +14,6 @@ def get_photo_rgb(image_path):
         for col in range(photo.size[1]):
             pixel_data = photo.getpixel((row, col))
             rgb_list.append(pixel_data)
-    '''
-    for i in range(0, len(rgb_list), photo.size[0]):  # convert rgb list in sub list
-        chunk = rgb_list[i: i + photo.size[0]]
-        rgb_table.append(chunk)'''
 
     print("\nrgb_list length = ", len(rgb_list))
     photo.close()
@@ -75,15 +71,25 @@ def assing_character(brightness_data):
 
     return assined_character
 
-def rgb_table(character_table):
+
+
+
+def character_table(assigned_char):
+    photo = Image.open(path + photo_path)
+    character_table = []
+    assigned_list = assing_character(assigned_char)
+    for i in range(0, len(assigned_list), photo.size[0]):  # convert rgb list in sub list
+        chunk = assigned_list[i: i + photo.size[0]]
+        character_table.append(chunk)
+    photo.close()
+    return character_table
 
 
 
 
 
+print(character_table(photo_path))
 
-print(assing_character(photo_path))
-print(brightness_level(photo_path))
 
 def read_open_text_file():
     text = open(path + 'Convert_image/Text/wolf.txt', 'r')
@@ -93,15 +99,6 @@ def read_open_text_file():
 
 # read_open_text_file()
 
-
-number = 2
-
-if 1 < number <= 5 : # 1 to 5
-    print ("You entered a number in the range of 1 to 5")
-elif int(number) in range(6, 11):# 6 to 10
-    print ("You entered a number in the range of 6 to 10")
-else:
-    print ("Your number wasn't in the correct range")
 
 
 
