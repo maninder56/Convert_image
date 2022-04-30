@@ -4,7 +4,7 @@ import os
 path = 'C:/Users/User/PycharmProjects/Convert_image_to_text/'
 
 photo_format = '.jpeg'
-photo_name = 'thums_up'
+photo_name = 'thumbs_up'
 
 photo_path = 'Images/' + photo_name + photo_format
 
@@ -13,9 +13,9 @@ photo_path = 'Images/' + photo_name + photo_format
 
 # photo size = 25x25 = 625
 
-def get_photo_rgb(image_path):
+def get_photo_rgb(image):
     rgb_list = []                           # store all rbg data
-    photo = Image.open(path + image_path)
+    photo = Image.open(path + image)
     for col in range(photo.size[1]):        # get the rgb data of every pixel
         for row in range(photo.size[0]):
             pixel_data = photo.getpixel((row, col))
@@ -64,11 +64,11 @@ def assing_character(brightness_data):
     return assigned_character
 
 
-def save_file(save_file):
+def save_file(save_text):
     photo = Image.open(path + photo_path)
     text = open(path + 'Convert_image/Text/' + photo_name + '.txt', 'w')
-    for i in range(0, len(save_file), photo.size[0]):
-        for x in save_file[i: i + photo.size[0]]:
+    for i in range(0, len(save_text), photo.size[0]):
+        for x in save_text[i: i + photo.size[0]]:
             text.write(x)
         text.write('\n')
     photo.close()
