@@ -26,9 +26,9 @@ def get_photo_rgb(image_path):
     return rgb_list
 
 
-def brightness_level(photo_data):
+def brightness_level(rgb_data):
     brightness_list = []
-    for rgb in photo_data:
+    for rgb in rgb_data:
         average_value = (rgb[0] + rgb[1] + rgb[2]) / 3
         brightness_list.append(round(average_value))
     return brightness_list
